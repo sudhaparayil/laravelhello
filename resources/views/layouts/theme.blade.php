@@ -19,7 +19,8 @@ Released   : 20140330
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
-<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" ret="stylesheet"/>
+<link href="/default.css" rel="stylesheet" type="text/css" media="all" />
 <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
@@ -53,9 +54,7 @@ Released   : 20140330
 </div>
 <div id="wrapper">
 @yield("content")
-{{ Form::open(array('url' => 'foo/bar')) }}
-    //
-{{ Form::close() }}
+
 </div>
 <div id="welcome">
 	<div class="container">

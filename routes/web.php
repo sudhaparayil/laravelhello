@@ -54,5 +54,11 @@ return view("post.list-article",[compact("articles")]);
 });
 
 
+
 Route::get("/list","App\Http\Controllers\ArticleController@index");
 Route::get("/create","App\Http\Controllers\ArticleController@create");
+Route::post("/articles","App\Http\Controllers\ArticleController@store");
+Route::get("/article/{article}","App\Http\Controllers\ArticleController@show");
+Route::get("/article/{article}/edit","App\Http\Controllers\ArticleController@edit");
+Route::put("/articles/{article}","App\Http\Controllers\ArticleController@update");
+Route::delete("/article/{article}","App\Http\Controllers\ArticleController@destroy");
