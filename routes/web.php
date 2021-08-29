@@ -63,3 +63,5 @@ Route::get("/article/{article}/edit","App\Http\Controllers\ArticleController@edi
 Route::put("/articles/{article}","App\Http\Controllers\ArticleController@update");
 Route::delete("/article/{article}","App\Http\Controllers\ArticleController@destroy");
 Route::get("/form","App\Http\Livewire\Form"::class);
+Route::get("/student","App\Http\Livewire\Students"::class);
+
