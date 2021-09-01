@@ -1,0 +1,17 @@
+
+
+1. composer require laravel/jetstream
+
+2. php artisan jetstream:install livewire
+
+3. npm install
+
+4. npm run dev
+
+5. php artisan migrate
+
+
+
+function getFee(isMember) {
+  return (isMember ? '$2.00' : '$10.00');
+}
