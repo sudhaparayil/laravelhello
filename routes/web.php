@@ -64,4 +64,7 @@ Route::put("/articles/{article}","App\Http\Controllers\ArticleController@update"
 Route::delete("/article/{article}","App\Http\Controllers\ArticleController@destroy");
 Route::get("/form","App\Http\Livewire\Form"::class);
 Route::get("/student","App\Http\Livewire\Students"::class);
+Route::get("/upload-images","App\Http\Livewire\Images"::class);
+Route::get("/upload-multipleimage","App\Http\Livewire\MultipleImageUpload"::class);
+Route::get("/student/add","App\Http\Livewire\StudentComponent"::class);
 

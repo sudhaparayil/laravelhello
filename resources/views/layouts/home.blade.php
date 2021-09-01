@@ -23,6 +23,9 @@
         window.livewire.on('studentupdated',()=>{
             $('#updatestudentModal').modal('hide');
         });
+        window.livewire.on('imagesuploaded',()=>{
+            $('#upload-image').modal('hide');
+        });
     </script>
 </body>
 </html>
