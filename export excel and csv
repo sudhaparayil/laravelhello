@@ -1,0 +1,77 @@
+composer require maatwebsite/excel
+======================
+config/app.php
+providers = [
+
+\Maatwebsite\Excel\ExcelServiceProvider::class,
+
+]
+
+
+alias = [
+
+'Excel' => \Maatwebsite\Excel\Facades\Excel::class,
+]
+
+==================
+
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider"
+==================
+models/employee.php
+use Illuminate\Support\Facades\DB;
+
+protected $table ="employees";
+
+public static function getemployee()
+{
+$records = DB::table('employees')->select('id','name')->get()->toArray();
+retturn $reccords;
+}
+====================
+
+
+php artisan make:export EmployeeExport --model=App\Models\Employee
+
+
+folder Exports/EmployeeExport.php
+
+use Maatwebsite\Excel\Concerns\withHeadings;
+
+.......  ..........FormCollections,withHeadings
+
+public function headings():array{
+
+   return [
+           'id',
+            'name',
+             'email'
+          ];
+}
+
+
+public function collection()
+{
+return collect(Employee::getEmployee());
+}
+==================
+ controller employee
+
+
+use App\Exports\EmployeeExport;
+use Excel;
+
+
+public function exportIntoExcel()
+{
+return Excel::download(new EmployeeExport,'employeelist.xlsx');
+}
+
+public function exportIntoCSV()
+{
+return Excel::download(new EmployeeExport,'employeelist.csv');
+}
+==================
+route
+Route::get("/export-excel","App\Http\Controllers\EmployeeController@exportIntoExcel");
+Route::get("/export-excel","App\Http\Controllers\EmployeeController@exportIntoCSV");
+
