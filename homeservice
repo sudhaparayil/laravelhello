@@ -1,0 +1,79 @@
+make laravel setup with login and register 
+-----------------------------
+create-project laravel/laravel HomeServices
+composer require livewire/livewire
+ 
+
+ composer require laravel/jetstream
+ php artisan jetstream:install livewire
+npm install
+npm run dev
+
+
+php artisan make:middleware AuthAdmin
+php artisan make:middleware AuthSprovider
+
+
+php artisan make:livewire Admin/AdminDashboardComponent
+php artisan make:livewire Sprovider/SproviderDashboardComponent
+php artisan make:livewire Customer/CustomerDashboardComponent
+
+
+
+***********************************************************
+customize login page
+----------------------------
+php artisan make:migration add_phone_to_user_table --table=users
+php migrate
+
+**************************************************************
+service category Frontend
+--------------------
+php artisan make:model ServiceCategory -m
+php artisan migrate
+php artisan make:seeder ServiceCategorySeeder
+composer dump-autoload
+php artisan db:seed
+
+
+php artisan make:livewire ServiceCategoriesComponent
+
+**************************************************************
+service category Backend
+--------------------
+all categories
+
+php artisan make:livewire admin/AdminServiceCategory
+=================================================
+add new category
+
+php artisan make:livewire admin/AdminAddServiceCategory
+=========================================================
+edit category
+
+
+php artisan make:livewire admin/AdminEditServiceCategory
+====================================================
+
+add service
+
+php artisan make:model Service -m
+php artisan migrate
+php artisan make:factory ServiceFactory   // insert dummy data to db
+php artisan db:seed
+ =======================================================================
+view service by category
+
+php artisan make:livewire ServiceByCategoryComponent
+======================================================================
+admin service 
+
+php artisan make:livewire admin/AdminServices
+=======================================================================
+admin fetch service by category
+ 
+php artisan make:livewire admin/AdminServicesByCategory
+
+
+
+
