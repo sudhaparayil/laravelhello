@@ -1,0 +1,148 @@
+composer global require laravel/installer
+laravel -v
+php artisan --version // **larvel frame work version
+laravel new blog
+cd blog
+php artisan serve
+
+@extends("layouts.app")
+@section("title","about page")
+
+<h1>@yield("title")</h1>
+
+@extends("layouts.app")
+@section("title","about page")
+@section("page-content")
+
+<p> about content</p>
+{{$message}}{{$price}}
+<ul>
+@foreach($items as $item)
+
+<li>{{$item}}</li>
+
+@endforeach
+</ul>
+@endsection
+
+
+php artisan
+php artisan make:controller PostsController
+php artisan make:model Post
+php artisan make:migration create_posts_table
+php artisan migrate
+ php artisan migrate:rollback
+php artisan make:migration add_author_to_posts_table
+ php artisan migrate:fresh     /**drop the tables first and then run migrations from the start.
+php artisan migrate:reset   /**rollback all migration
+php artisan make:model Article -mc /** make model migrate and controller
+php artisan make:controller ArticleController -r  /** make controller crud operation funv
+
+php artisan tinker
+Tinker is a REPL(read-eval-print loop). REPL allows users to interact with the application through the command line. 
+It’s commonly used for interaction with Eloquent ORM, jobs, events, and more.
+
+$article = new App\Models\Article;
+$article->title="safaf"
+$article->discription="safgfdhdfhdhaf"
+$article->save();
+
+
+
+
+
+
+php artisan config:cache
+
+
+php artisan make:seeder UserSeeder // insert data into database
+php artisan db:seed --class UserSeeder // insert data into database execution
+
+
+
+ php artisan make:middleware UserAuth
+
+
+
+public function index($id){
+    //$test = request("id");
+   // echo $id;
+   $items = [
+       "1"=> "mango",
+       "2"=> "orange",
+       "3"=> "pinapple",
+
+   ];
+   if(!isset($items[$id])){
+       abort(404);
+   }else{
+    $fruit = $items[$id];
+    $data = [
+        "fruit" =>  $fruit,
+        
+    ];
+   }
+  
+   return view('post.index',$data);
+   }
+
+
+
+
+   public function index($id){
+
+     //  $post = \DB::table('posts')->where("id",$id)->first();
+  $post = Post::where("id",$id)->first(); /** using model elegant class**/
+
+   if(!$post){
+       abort(404);
+   }else{
+    
+    $data = [
+        "post" =>  $post,
+        
+    ];
+   }
+  
+   return view('post.index',$data);
+   }
+
+
+
+**********************************
+string error for table migration
+**********************************
+
+app/provider/appserviceprovider.php
+--
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+        Schema::defaultStringLength(191);
+    }
+}
+************************************************8
