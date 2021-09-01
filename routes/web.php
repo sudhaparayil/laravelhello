@@ -53,9 +53,11 @@ return view("post.list-article",[compact("articles")]);
  //dump($article);
 });
 
-
+Route::get("/send-mail","App\Http\Controllers\ArticleController@SendMail");
 
 Route::get("/list","App\Http\Controllers\ArticleController@index");
+
+Route::get("/autocomplete","App\Http\Controllers\ArticleController@autocomplete")->name('autocomplete');
 Route::get("/create","App\Http\Controllers\ArticleController@create");
 Route::post("/articles","App\Http\Controllers\ArticleController@store");
 Route::get("/article/{article}","App\Http\Controllers\ArticleController@show");
@@ -67,4 +69,5 @@ Route::get("/student","App\Http\Livewire\Students"::class);
 Route::get("/upload-images","App\Http\Livewire\Images"::class);
 Route::get("/upload-multipleimage","App\Http\Livewire\MultipleImageUpload"::class);
 Route::get("/student/add","App\Http\Livewire\StudentComponent"::class);
+Route::get("/student/autocomplete","App\Http\Livewire\StudentComponent"::class,'autosearchcomplete')->name('autocomplete');
 

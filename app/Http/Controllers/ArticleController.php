@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Support\Facades\Mail;
+
 
 class ArticleController extends Controller
 {
@@ -41,7 +43,7 @@ class ArticleController extends Controller
             'title' => 'required',
             'discription' => 'required'
         ]);
-  
+
 
         $article = new Article();
         $article->title = request("title");
@@ -90,6 +92,24 @@ class ArticleController extends Controller
         return redirect("/list");
     }
 
+    public function autocomplete(Request $request)
+    {
+        $data = Article::select("title")
+                ->where("title","LIKE", '%'.$request->get('query').'%')
+                ->get();
+        return response()->json($data);
+    }
+
+    public function SendMail()
+    {
+        $details = [
+            'title' =>"mail form my companyname",
+            "body" =>"this is for tseting"
+        ];
+
+        Mail::to("sudhaparayil@gmail.com")->send(new TestMail($details));
+        return "email send";
+    }
     /**
      * Remove the specified resource from storage.
      *

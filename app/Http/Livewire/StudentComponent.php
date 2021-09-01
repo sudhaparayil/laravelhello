@@ -76,11 +76,33 @@ class StudentComponent extends Component
         session()->flash('message', 'Student Has Been Created Successfully.');
     }
 
+
+
+    
+    public function autocomplete(Request $request)
+{
+    $data = Student::select("firstname")
+            ->where("firstname","LIKE", '%'.$request->get('query').'%')
+            ->get();
+    return response()->json($data);
+}
+
+
+    public function autosearchcomplete(Request $request)
+    {
+        $data = Student::select('firstname')
+                    ->where("firstname","LIKE","%{$request->terms}%")
+                    ->get();
+
+       return response()->json($data);
+
+    }
     public function render()
     {
         //$this->employees = Employee::all();
         return view('livewire.student-component')->layout('layouts.home');
     }
 }
+
 
 

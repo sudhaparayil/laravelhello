@@ -75,6 +75,46 @@
     </div>
     </div>
     </form>
+
+
+    {{-- <div class="container">
+        <div class="jumbotron">
+           <h1>Laravel 8 Autocomplete: Real Programmer</h1>
+        </div>
+     </div>
+     <div class="container">
+        <input class="typeahead form-control" type="text">
+     </div>
+     <script type="text/javascript">
+        var path = "{{ route('autocomplete') }}";
+        $('input.typeahead').typeahead({
+            source:  function (query, process) {
+            return $.get(path, { query: query }, function (data) {
+                    return process(data);
+                });
+            }
+        });
+     </script> --}}
+
+
+    <form action="">
+        <div class="form-group">
+            <input type="text" class="form-control typeahead" placeholder="search first name">
+        </div>
+    </form>
+    <script>
+        var path="{{ route('autocomplete') }}";
+
+        $('input.typeahead').typeahead({
+            source:function(terms,process){
+                return $.get(path,{terms:terms},function(data){
+                    return process(data);
+                });
+            }
+        });
+    </script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     </div>
     <style>
         html, body {

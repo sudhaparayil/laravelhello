@@ -14,6 +14,24 @@
 			<a class="btn btn-primary" href="/article/{{$article->id}}/edit">edit</a>
 		  </div>
 	    @endforeach
-		
+
 	</div>
+    <div class="container">
+        <div class="jumbotron">
+           <h1>Laravel 8 Autocomplete: Real Programmer</h1>
+        </div>
+     </div>
+     <div class="container">
+        <input class="typeahead form-control" type="text">
+     </div>
+     <script type="text/javascript">
+        var path = "{{ route('autocomplete') }}";
+        $('input.typeahead').typeahead({
+            source:  function (query, process) {
+            return $.get(path, { query: query }, function (data) {
+                    return process(data);
+                });
+            }
+        });
+     </script>
 @endsection
